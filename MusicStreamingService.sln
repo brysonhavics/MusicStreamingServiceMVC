@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStreamingService.MVC", "MusicStreamingService.MVC\MusicStreamingService.MVC.csproj", "{3DC7DE71-B2B1-4C16-ABDB-556F78141725}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStreamingService.Data", "MusicStreamingService.Data\MusicStreamingService.Data.csproj", "{11F29166-1535-421F-8DDE-B00DA79EE3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStreamingService.Models", "MusicStreamingService.Models\MusicStreamingService.Models.csproj", "{8A0AA2BA-D5FB-4846-A408-E6D5E90CE355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStreamingService.Services", "MusicStreamingService.Services\MusicStreamingService.Services.csproj", "{B9E5224C-285C-4E82-8F15-CAD1AF0C3307}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{3DC7DE71-B2B1-4C16-ABDB-556F78141725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DC7DE71-B2B1-4C16-ABDB-556F78141725}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DC7DE71-B2B1-4C16-ABDB-556F78141725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F29166-1535-421F-8DDE-B00DA79EE3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F29166-1535-421F-8DDE-B00DA79EE3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F29166-1535-421F-8DDE-B00DA79EE3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F29166-1535-421F-8DDE-B00DA79EE3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A0AA2BA-D5FB-4846-A408-E6D5E90CE355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A0AA2BA-D5FB-4846-A408-E6D5E90CE355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A0AA2BA-D5FB-4846-A408-E6D5E90CE355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A0AA2BA-D5FB-4846-A408-E6D5E90CE355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E5224C-285C-4E82-8F15-CAD1AF0C3307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E5224C-285C-4E82-8F15-CAD1AF0C3307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E5224C-285C-4E82-8F15-CAD1AF0C3307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E5224C-285C-4E82-8F15-CAD1AF0C3307}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

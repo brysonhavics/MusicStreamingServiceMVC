@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace MusicStreamingService.Models.ArtistsModels
 {
-    public class ArtistCreate
+    public class ArtistDetail
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
-        [MaxLength(2, ErrorMessage = "Too many characters, please shorten.")]
         public string About { get; set; }
-        [Required]
         public DateTime Birthday { get; set; }
+        public int Albums { get; set; }
+        public int Followers { get; set; }
     }
 }

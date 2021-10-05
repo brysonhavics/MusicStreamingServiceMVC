@@ -9,6 +9,7 @@ namespace MusicStreamingService.Models.ArtistsModels
 {
     public class ArtistDetail
     {
+        public int ArtistId { get; set; }
         public string Name { get; set; }
         public string About { get; set; }
         public DateTime Birthday { get; set; }

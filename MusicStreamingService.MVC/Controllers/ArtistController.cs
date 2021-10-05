@@ -22,7 +22,9 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Artist
         public ActionResult Index()
         {
-            return View();
+            var service = new ArtistService();
+            var model = service.GetArtists();
+            return View(model);
         }
 
         //Get: Create
@@ -48,6 +50,17 @@ namespace MusicStreamingService.MVC.Controllers
             return View();
         }
 
+        public ActionResult Details(int id)
+        {
+            var service = CreateArtistService();
+            var model = service.GetArtistById(id);
 
+            return View(model);
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }

@@ -29,6 +29,15 @@ namespace MusicStreamingService.Services
             }
         }
 
+        public IEnumerable<ArtistListItem> GetArtists()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Artists.Select(e => new ArtistListItem { About = e.About, Albums = e.Albums, Birthday = e.Birthday, Followers = e.Followers, Name = e.Name, ArtistId = e.ArtistId});
+                return query.ToArray();
+            }
+        }
+
         public ArtistDetail GetArtistById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -42,6 +51,20 @@ namespace MusicStreamingService.Services
                     Albums = entity.Albums,
                     Followers = entity.Followers,
                 };
+            }
+        }
+
+        public bool UpdateArtist(ArtistEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Artists.Single(a => a.ArtistId == model.ArtistId);
+
+                entity.Name = model.Name;
+                entity.About = model.About;
+                entity.Birthday = model.Birthday;
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }

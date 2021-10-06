@@ -50,6 +50,8 @@ namespace MusicStreamingService.MVC.Controllers
             return View();
         }
 
+        //Get: Details
+
         public ActionResult Details(int id)
         {
             var service = CreateArtistService();
@@ -58,9 +60,45 @@ namespace MusicStreamingService.MVC.Controllers
             return View(model);
         }
 
+        //Get: Edit
+
         public ActionResult Edit()
         {
             return View();
         }
+
+        //Post: Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ArtistEdit artist)
+        {
+            if (ModelState.IsValid)
+            {
+                var service = CreateArtistService();
+                service.UpdateArtist(artist);
+                return RedirectToAction("Index");
+            }
+            return View(artist);
+        }
+
+        //Get: Delete
+        public ActionResult Delete(int id)
+        {
+            var service = CreateArtistService();
+            var model = service.GetArtistById(id);
+            return View(model);
+        }
+        
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteArtist(int id)
+        {
+            var service = CreateArtistService();
+            service.DeleteArtist(id);
+            TempData["SaveResult"] = "The artist was deleted";
+            return RedirectToAction("Index");
+        }
+        
     }
 }

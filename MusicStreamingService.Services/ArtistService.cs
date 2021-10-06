@@ -67,5 +67,17 @@ namespace MusicStreamingService.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteArtist(int artistId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Artists.Single(a => a.ArtistId == artistId);
+
+                ctx.Artists.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumModels\AlbumCreate.cs" />
+    <Compile Include="AlbumModels\AlbumDetails.cs" />
     <Compile Include="ArtistsModels\ArtistCreate.cs" />
     <Compile Include="ArtistsModels\ArtistDetail.cs" />
     <Compile Include="ArtistsModels\ArtistEdit.cs" />

@@ -52,6 +52,9 @@
     <Compile Include="ArtistsModels\ArtistListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongModels\SongCreate.cs" />
+    <Compile Include="SongModels\SongListItem.cs" />
+    <Compile Include="SongModels\SongDetail.cs" />
+    <Compile Include="SongModels\SongEdit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

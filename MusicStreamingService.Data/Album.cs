@@ -12,10 +12,11 @@ namespace MusicStreamingService.Data
         [Key]
         public int AlbumId { get; set; }
         [Required]
-        public int Name { get; set; }
+        public string Name { get; set; }
         [Required]
         public int ArtistId { get; set; }
         public DateTime ReleaseDate { get; set; }
         public TimeSpan Length { get; set; }
+        public virtual List<Song> Songs { get; set; }
     }
 }

@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicStreamingService.Models.AlbumModels
 {
-    public class AlbumCreate
+    public class AlbumDetail
     {
-        [Required]
-        public string Name { get; set; }
-        [Required]
+        public int AlbumId { get; set; }
         public int ArtistId { get; set; }
-        [Required]
+        public string ArtistName { get; set; }
+        public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public TimeSpan Length { get; set; }
     }
 }

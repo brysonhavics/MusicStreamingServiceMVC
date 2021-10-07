@@ -23,10 +23,10 @@ namespace MusicStreamingService.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                entity.ReleaseDate = entity.Album.ReleaseDate;
-                    //ctx.Albums.Where(a => a.AlbumId == entity.AlbumId).FirstOrDefault().ReleaseDate;
-                entity.Album.Length += entity.Length;
-                //ctx.Albums.Where(a => a.AlbumId == entity.AlbumId).FirstOrDefault().Length += entity.Length;
+                //entity.ReleaseDate = entity.Album.ReleaseDate;
+                entity.ReleaseDate = ctx.Albums.Where(a => a.AlbumId == entity.AlbumId).FirstOrDefault().ReleaseDate;
+                //entity.Album.Length += entity.Length;
+                ctx.Albums.Where(a => a.AlbumId == entity.AlbumId).FirstOrDefault().Length += entity.Length;
                 ctx.Songs.Add(entity);
                 return ctx.SaveChanges() == 2;
             }
@@ -37,6 +37,7 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Songs.Select(e => new SongListItem { SongId = e.SongId, AlbumName = e.Album.Name, ArtistName = e.Artist.Name, Name = e.Name});
+                return query.ToArray();
             }
         }
     }

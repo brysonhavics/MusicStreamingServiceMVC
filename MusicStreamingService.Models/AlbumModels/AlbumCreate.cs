@@ -10,10 +10,13 @@ namespace MusicStreamingService.Models.AlbumModels
     public class AlbumCreate
     {
         [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Artist Id")]
         public int ArtistId { get; set; }
         [Required]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
     }
 }

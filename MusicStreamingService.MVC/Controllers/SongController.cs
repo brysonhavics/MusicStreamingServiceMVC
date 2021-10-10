@@ -29,8 +29,8 @@ namespace MusicStreamingService.MVC.Controllers
         public ActionResult Details(int id)
         {
             var service = CreateSongService();
-            var model = service.
-            return View();
+            var model = service.GetSongById(id);
+            return View(model);
         }
 
         // GET: Song/Create
@@ -68,35 +68,33 @@ namespace MusicStreamingService.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SongEdit song)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var service = CreateSongService();
                 service.UpdateSong(song);
                 return RedirectToAction("Index");
             }
-                return View(song);
+            return View(song);
         }
 
         // GET: Song/Delete/
         public ActionResult Delete(int id)
         {
-            return View();
+            var service = CreateSongService();
+            var model = service.GetSongById(id);
+            return View(model);
         }
 
-        // POST: Song/Delete/5
+        // POST: Song/Delete
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteSong(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var service = CreateSongService();
+            service.DeleteSong(id);
+            TempData["SaveResult"] = "The song was deleted";
+            return RedirectToAction("Index");
         }
     }
 }

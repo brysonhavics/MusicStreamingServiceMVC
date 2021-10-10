@@ -34,7 +34,7 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Albums.Select(e => new AlbumListItem { AlbumId = e.AlbumId, Name = e.Name,
-                    ArtistName = (ctx.Artists.FirstOrDefault(a => a.ArtistId == e.ArtistId).Name) });
+                    ArtistName = (ctx.Artists.FirstOrDefault(a => a.ArtistId == e.ArtistId).Name), ReleaseDate = e.ReleaseDate });
                 return query.ToArray();
             }
         }

@@ -25,10 +25,12 @@ namespace MusicStreamingService.MVC.Controllers
             return View(model);
         }
 
-        // GET: Song/Details/5
+        // GET: Song/Details/
         public ActionResult Details(int id)
         {
-            return View();
+            var service = CreateSongService();
+            var model = service.GetSongById(id);
+            return View(model);
         }
 
         // GET: Song/Create
@@ -55,48 +57,44 @@ namespace MusicStreamingService.MVC.Controllers
             return View();
         }
 
-        // GET: Song/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Song/Edit
+        public ActionResult Edit()
         {
             return View();
         }
 
-        // POST: Song/Edit/5
+        // POST: Song/Edit
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SongEdit song)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var service = CreateSongService();
+                service.UpdateSong(song);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(song);
         }
 
-        // GET: Song/Delete/5
+        // GET: Song/Delete/
         public ActionResult Delete(int id)
         {
-            return View();
+            var service = CreateSongService();
+            var model = service.GetSongById(id);
+            return View(model);
         }
 
-        // POST: Song/Delete/5
+        // POST: Song/Delete
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteSong(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var service = CreateSongService();
+            service.DeleteSong(id);
+            TempData["SaveResult"] = "The song was deleted";
+            return RedirectToAction("Index");
         }
     }
 }

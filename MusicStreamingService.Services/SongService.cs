@@ -40,5 +40,47 @@ namespace MusicStreamingService.Services
                 return query.ToArray();
             }
         }
+
+        public SongDetail GetSongById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Songs.Single(s => s.SongId == id);
+                return new SongDetail()
+                {
+                    AlbumName = entity.Album.Name,
+                    ArtistName = entity.Artist.Name,
+                    Name = entity.Name,
+                    ReleaseDate = entity.ReleaseDate,
+                    Length = entity.Length,
+                };
+            }
+        }
+
+        public bool UpdateSong(SongEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Songs.Single(s => s.SongId == model.SongId);
+
+                entity.AlbumId = model.AlbumId;
+                entity.ArtistId = model.ArtistId;
+                entity.Name = model.Name;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteSong(int songId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Songs.Single(a => a.SongId == songId);
+
+                ctx.Songs.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

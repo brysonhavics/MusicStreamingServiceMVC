@@ -1,4 +1,5 @@
-﻿using MusicStreamingService.Models.AlbumModels;
+﻿using MusicStreamingService.Data;
+using MusicStreamingService.Models.AlbumModels;
 using MusicStreamingService.Services;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,17 @@ namespace MusicStreamingService.MVC.Controllers
         //Album/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "New Album";
+
+            List<Artist> Artists = new ArtistService().GetArtistsList();
+            var selectList = from a in Artists
+                        select new SelectListItem()
+                        {
+                            Value = a.ArtistId.ToString(),
+                            Text = a.Name
+                        };
+            ViewBag.ArtistId = selectList.ToList();
+
             return View();
         }
 

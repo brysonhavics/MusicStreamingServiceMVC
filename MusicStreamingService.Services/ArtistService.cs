@@ -38,6 +38,15 @@ namespace MusicStreamingService.Services
             }
         }
 
+        public List<Artist> GetArtistsList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Artists.ToList();
+            
+            }
+        }
+
         public ArtistDetail GetArtistById(int id)
         {
             using (var ctx = new ApplicationDbContext())

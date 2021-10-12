@@ -1,5 +1,6 @@
 ﻿using MusicStreamingService.Data;
 using MusicStreamingService.Models.AlbumModels;
+using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,17 @@ namespace MusicStreamingService.Services
                 ctx.Albums.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<SongDetail> GetSongsOnAlbum(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Albums.Single(a => a.AlbumId == id);
+
+                var query = entity.Songs.Select(s => new SongDetail { Name = s.Name, ReleaseDate = s.ReleaseDate, Length = s.Length });
+                return query.ToArray();
             }
         }
     }

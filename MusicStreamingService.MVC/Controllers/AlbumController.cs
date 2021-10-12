@@ -97,5 +97,13 @@ namespace MusicStreamingService.MVC.Controllers
             TempData["SaveResult"] = "The album was deleted";
             return RedirectToAction("Index");
         }
+
+        
+        public ActionResult GetSongsOnAlbum(int id)
+        {
+            var service = CreateAlbumService();
+            var model = service.GetSongsOnAlbum(id);
+            return View(model);
+        }
     }
 }

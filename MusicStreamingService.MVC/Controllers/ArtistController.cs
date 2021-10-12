@@ -36,6 +36,7 @@ namespace MusicStreamingService.MVC.Controllers
 
         //Post: Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ArtistCreate artistModel)
         {
             if (!ModelState.IsValid)
@@ -56,7 +57,7 @@ namespace MusicStreamingService.MVC.Controllers
         {
             var service = CreateArtistService();
             var model = service.GetArtistById(id);
-
+            
             return View(model);
         }
 

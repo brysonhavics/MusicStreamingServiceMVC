@@ -1,4 +1,6 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -32,9 +34,58 @@ namespace MusicStreamingService.MVC.Models
             return new ApplicationDbContext();
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Song>()
+                .HasRequired(a => a.Artist)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            /*
+            modelBuilder.Entity<Album>()
+                .HasRequired(b => b.Artist)
+                .WithMany(a => a.Albums)
+                .HasForeignKey<int>(b => b.ArtistId);
+
+            modelBuilder.Entity<Song>()
+                .HasRequired(b => b.Artist)
+                .WithMany(a => a.Songs)
+                .HasForeignKey<int>(b => b.ArtistId);
+
+            modelBuilder.Entity<Song>()
+                .HasRequired(b => b.Album)
+                .WithMany(a => a.Songs)
+                .HasForeignKey<int>(b => b.AlbumId);
+            */
+            modelBuilder
+                .Conventions
+                .Remove<PluralizingTableNameConvention>();
+
+            modelBuilder
+                .Configurations
+                .Add(new IdentityUserLoginConfiguration())
+                .Add(new IdentityUserRoleConfiguration());
+        }
+
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Song> Songs { get; set; }
 
+    }
+
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginConfiguration()
+        {
+            HasKey(iul => iul.UserId);
+        }
+    }
+
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
+        {
+            HasKey(iur => iur.UserId);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace MusicStreamingService.Models.AlbumModels
         public string Name { get; set; }
         [Display(Name = "Artist")]
         public string ArtistName { get; set; }
-        [Display(Name = "Released")]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
     }
 }

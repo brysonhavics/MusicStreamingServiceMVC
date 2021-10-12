@@ -17,8 +17,11 @@ namespace MusicStreamingService.Data
         public string About { get; set; }
         [Required]
         public DateTime Birthday { get; set; }
-        public int Albums { get; set; }
+        public int AlbumsNumber { get; set; }
         public int Followers { get; set; }
-
+        
+        public virtual List<Song> Songs { get; set; }
+        public virtual List<Album> Albums { get; set; }
+        
     }
 }

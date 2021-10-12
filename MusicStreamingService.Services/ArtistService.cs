@@ -18,7 +18,7 @@ namespace MusicStreamingService.Services
                 Name = model.Name,
                 About = model.About,
                 Birthday = model.Birthday,
-                Albums = 0,
+                AlbumsNumber = 0,
                 Followers = 0,
             };
 
@@ -33,8 +33,17 @@ namespace MusicStreamingService.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Artists.Select(e => new ArtistListItem { About = e.About, Albums = e.Albums, Birthday = e.Birthday, Followers = e.Followers, Name = e.Name, ArtistId = e.ArtistId});
+                    var query = ctx.Artists.Select(e => new ArtistListItem { About = e.About, Albums = e.AlbumsNumber, Birthday = e.Birthday, Followers = e.Followers, Name = e.Name, ArtistId = e.ArtistId});
                 return query.ToArray();
+            }
+        }
+
+        public List<Artist> GetArtistsList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Artists.ToList();
+            
             }
         }
 
@@ -48,7 +57,7 @@ namespace MusicStreamingService.Services
                     Name = entity.Name,
                     About = entity.About,
                     Birthday = entity.Birthday,
-                    Albums = entity.Albums,
+                    Albums = entity.AlbumsNumber,
                     Followers = entity.Followers,
                 };
             }

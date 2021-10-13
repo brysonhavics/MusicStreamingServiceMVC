@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MusicStreamingService.Models.SongModels.SongDetail>
+
+@{
+    ViewBag.Title = "Album Songs";
+}
+<h2>
+    Get Songs On @Html.DisplayFor(model => model.First().AlbumName)
+    </h2>
+
+        <p>
+            @Html.ActionLink("Home", "Index")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArtistName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Length)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArtistName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Length)
+                    </td>
+                </tr>
+            }
+
+        </table>

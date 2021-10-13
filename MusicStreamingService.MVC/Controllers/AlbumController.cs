@@ -1,5 +1,6 @@
 ﻿using MusicStreamingService.Data;
 using MusicStreamingService.Models.AlbumModels;
+using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.Services;
 using System;
 using System.Collections.Generic;
@@ -110,12 +111,14 @@ namespace MusicStreamingService.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        
-        public ActionResult GetSongsOnAlbum(int id)
+        [Route("AlbumSongs/{id:int}")]
+        public ActionResult AlbumSongs(int id)
         {
             var service = CreateAlbumService();
             var model = service.GetSongsOnAlbum(id);
+            //ViewBag.AlbumName = model[0].
             return View(model);
         }
+
     }
 }

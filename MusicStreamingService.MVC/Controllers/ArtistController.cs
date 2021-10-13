@@ -101,5 +101,13 @@ namespace MusicStreamingService.MVC.Controllers
             return RedirectToAction("Index");
         }
         
+        [Route("ArtistAlbums/{id:int}")]
+        public ActionResult ArtistAlbums(int id)
+        {
+            var service = CreateArtistService();
+            var model = service.GetArtistAlbums(id);
+            ViewBag.Artist = service.GetArtistById(id).Name;
+            return View(model);
+        }
     }
 }

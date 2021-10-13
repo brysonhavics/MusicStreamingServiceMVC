@@ -1,5 +1,7 @@
 ﻿using MusicStreamingService.Data;
+using MusicStreamingService.Models.AlbumModels;
 using MusicStreamingService.Models.ArtistsModels;
+using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -86,6 +88,41 @@ namespace MusicStreamingService.Services
                 ctx.Artists.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<AlbumDetail> GetArtistAlbums(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Artists.Single(a => a.ArtistId == id);
+
+                var query = entity.Albums.Select(a => new AlbumDetail
+                {
+                    ArtistName = ctx.Artists.FirstOrDefault(b => b.ArtistId == entity.ArtistId).Name,
+                    Name = entity.Name,
+                    ReleaseDate = ctx.Albums.FirstOrDefault(c => c.AlbumId == a.AlbumId).ReleaseDate,
+                    Length = ctx.Albums.FirstOrDefault(c => c.AlbumId == a.AlbumId).Length,
+                });
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<SongDetail> GetArtistSongs(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Artists.Single(a => a.ArtistId == id);
+
+                var query = entity.Songs.Select(a => new SongDetail
+                {
+                    ArtistName = ctx.Artists.FirstOrDefault(b => b.ArtistId == entity.ArtistId).Name,
+                    AlbumName = ctx.Albums.FirstOrDefault(d => d.AlbumId == a.AlbumId).Name,
+                    Name = entity.Name,
+                    ReleaseDate = ctx.Songs.FirstOrDefault(c => c.SongId == a.SongId).ReleaseDate,
+                    Length = ctx.Songs.FirstOrDefault(c => c.SongId == a.SongId).Length,
+                });
+                return query.ToArray();
             }
         }
     }

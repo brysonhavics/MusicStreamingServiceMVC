@@ -94,7 +94,10 @@ namespace MusicStreamingService.Services
             {
                 var entity = ctx.Albums.Single(a => a.AlbumId == id);
 
-                var query = entity.Songs.Select(s => new SongDetail { Name = s.Name, ArtistName = (ctx.Artists.FirstOrDefault(a => a.ArtistId == s.ArtistId).Name), AlbumName = (ctx.Albums.FirstOrDefault(a => a.AlbumId == s.AlbumId).Name), Length = s.Length });
+                var query = entity.Songs.Select(s => new SongDetail { Name = s.Name, ArtistName = (ctx.Artists.FirstOrDefault
+                    (a => a.ArtistId == s.ArtistId).Name), AlbumName = (ctx.Albums.FirstOrDefault(a => a.AlbumId == s.AlbumId).Name),
+                    Length = s.Length
+                });
                 return query.ToArray();
             }
         }

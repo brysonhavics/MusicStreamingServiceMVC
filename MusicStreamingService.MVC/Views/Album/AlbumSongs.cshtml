@@ -4,8 +4,8 @@
     ViewBag.Title = "Album Songs";
 }
 <h2>
-    Get Songs On @Html.DisplayFor(model => model.First().AlbumName)
-    </h2>
+    @ViewBag.Name
+</h2>
 
         <p>
             @Html.ActionLink("Home", "Index")

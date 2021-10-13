@@ -116,7 +116,7 @@ namespace MusicStreamingService.MVC.Controllers
         {
             var service = CreateAlbumService();
             var model = service.GetSongsOnAlbum(id);
-            //ViewBag.AlbumName = model[0].
+            ViewBag.Name = service.GetAlbumById(id).Name;
             return View(model);
         }
 

@@ -50,7 +50,8 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.ArtistId  }) |
             @Html.ActionLink("Details", "Details", new { id=item.ArtistId  }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.ArtistId  })
+            @Html.ActionLink("Delete", "Delete", new {  id=item.ArtistId  }) |
+            @Html.ActionLink("View Albums", "ArtistAlbums", new {  id=item.ArtistId  })
         </td>
     </tr>
 }

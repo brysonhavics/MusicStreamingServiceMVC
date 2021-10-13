@@ -33,7 +33,7 @@ namespace MusicStreamingService.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                    var query = ctx.Artists.Select(e => new ArtistListItem { About = e.About, Albums = e.AlbumsNumber, Birthday = e.Birthday, Followers = e.Followers, Name = e.Name, ArtistId = e.ArtistId});
+                var query = ctx.Artists.Select(e => new ArtistListItem {About = e.About, Albums = e.AlbumsNumber, Birthday = e.Birthday, Followers = e.Followers, Name = e.Name, ArtistId = e.ArtistId });
                 return query.ToArray();
             }
         }

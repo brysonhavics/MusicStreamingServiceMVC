@@ -1,4 +1,5 @@
-﻿using MusicStreamingService.Models.ArtistsModels;
+﻿using MusicStreamingService.Data;
+using MusicStreamingService.Models.ArtistsModels;
 using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.Services;
 using System;
@@ -36,6 +37,24 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Song/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "New Song";
+
+            List<Artist> Artists = new ArtistService().GetArtistsList();
+            var artistList = from a in Artists
+                             select new SelectListItem()
+                             {
+                                 Value = a.ArtistId.ToString(),
+                                 Text = a.Name
+                             };
+            ViewBag.ArtistId = artistList.ToList();
+            List<Album> Albums = new AlbumService().GetAlbumsList();
+            var albumList = from b in Albums
+                            select new SelectListItem()
+                            {
+                                Value = b.AlbumId.ToString(),
+                                Text = b.Name
+                            };
+            ViewBag.AlbumId = albumList.ToList();
             return View();
         }
 
@@ -60,6 +79,24 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Song/Edit
         public ActionResult Edit()
         {
+            ViewBag.Title = "Edit Song";
+
+            List<Artist> Artists = new ArtistService().GetArtistsList();
+            var artistList = from a in Artists
+                             select new SelectListItem()
+                             {
+                                 Value = a.ArtistId.ToString(),
+                                 Text = a.Name
+                             };
+            ViewBag.ArtistId = artistList.ToList();
+            List<Album> Albums = new AlbumService().GetAlbumsList();
+            var albumList = from b in Albums
+                            select new SelectListItem()
+                            {
+                                Value = b.AlbumId.ToString(),
+                                Text = b.Name
+                            };
+            ViewBag.AlbumId = albumList.ToList();
             return View();
         }
 

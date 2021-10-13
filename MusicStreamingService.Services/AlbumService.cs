@@ -40,6 +40,13 @@ namespace MusicStreamingService.Services
             }
         }
 
+        public List<Album> GetAlbumsList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Albums.ToList();
+            }
+        }
         public AlbumDetail GetAlbumById(int id)
         {
             using (var ctx = new ApplicationDbContext())

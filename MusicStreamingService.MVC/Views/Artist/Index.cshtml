@@ -38,7 +38,8 @@
             @Html.DisplayFor(modelItem => item.About)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Birthday)
+            @{ string birthday = item.Birthday.ToString("yyyy-MM-dd");}
+            @Html.DisplayFor(modelItem => birthday)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Albums)

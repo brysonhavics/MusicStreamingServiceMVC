@@ -1,4 +1,4 @@
-﻿@model MusicStreamingService.Models.AlbumModels.AlbumDetail
+﻿@model MusicStreamingService.Models.SongModels.SongDetail
 
 @{
     ViewBag.Title = "Details";
@@ -7,23 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Album Detail</h4>
+    <h4>Song Detail</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AlbumId)
+            @Html.DisplayNameFor(model => model.AlbumName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AlbumId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ArtistId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ArtistId)
+            @Html.DisplayFor(model => model.AlbumName)
         </dd>
 
         <dt>
@@ -61,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.AlbumId  }) |
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.SongId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

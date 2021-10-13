@@ -41,6 +41,14 @@ namespace MusicStreamingService.Services
             }
         }
 
+
+        public List<Song> GetSongsList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Songs.ToList();
+            }
+        }
         public SongDetail GetSongById(int id)
         {
             using (var ctx = new ApplicationDbContext())

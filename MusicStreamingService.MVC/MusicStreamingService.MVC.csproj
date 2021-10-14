@@ -240,7 +240,6 @@
     <Content Include="Views\Artist\Create.cshtml" />
     <Content Include="Views\Artist\Index.cshtml" />
     <Content Include="Views\Artist\Details.cshtml" />
-    <Content Include="Views\Artist\Edit.cshtml" />
     <Content Include="Views\Artist\Delete.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Album\Details.cshtml" />
@@ -255,6 +254,7 @@
     <Content Include="Views\Album\AlbumSongs.cshtml" />
     <Content Include="Views\Artist\ArtistAlbums.cshtml" />
     <Content Include="Views\Artist\ArtistSongs.cshtml" />
+    <Content Include="Views\Artist\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

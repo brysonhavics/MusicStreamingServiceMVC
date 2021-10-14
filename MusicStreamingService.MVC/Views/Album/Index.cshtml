@@ -32,7 +32,8 @@
             @Html.DisplayFor(modelItem => item.ArtistName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
+            @{ string releaseDate = item.ReleaseDate.ToString("yyyy-MM-dd");}
+            @Html.DisplayFor(modelItem => releaseDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.AlbumId  }) |

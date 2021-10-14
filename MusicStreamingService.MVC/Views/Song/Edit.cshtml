@@ -4,15 +4,16 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit @ViewBag.Name</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>Song Edit</h4>
+    <h4>Song Editing</h4>
     <hr />
+    @Html.HiddenFor(model => model.SongId)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.AlbumId, htmlAttributes: new { @class = "control-label col-md-2" })

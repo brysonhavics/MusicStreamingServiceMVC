@@ -67,7 +67,7 @@ namespace MusicStreamingService.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Albums.Single(a => a.ArtistId == model.ArtistId);
+                var entity = ctx.Albums.Single(a => a.AlbumId == model.AlbumId);
                 entity.ArtistId = model.ArtistId;
                 entity.Name = model.Name;
                 entity.ReleaseDate = model.ReleaseDate;

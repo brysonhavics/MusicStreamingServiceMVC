@@ -73,9 +73,27 @@ namespace MusicStreamingService.MVC.Controllers
 
         //Get: Edit
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            List<Artist> Artists = new ArtistService().GetArtistsList();
+            var artistList = from a in Artists
+                             select new SelectListItem()
+                             {
+                                 Value = a.ArtistId.ToString(),
+                                 Text = a.Name
+                             };
+            ViewBag.ArtistId = artistList.ToList();
+            var service = CreateAlbumService();
+            var detail = service.GetAlbumById(id);
+            var model = new AlbumEdit()
+            {
+                AlbumId = detail.AlbumId,
+                ArtistId = detail.ArtistId,
+                Name = detail.Name,
+                ReleaseDate = detail.ReleaseDate,
+            };
+            ViewBag.Name = detail.Name;
+            return View(model);
         }
 
         //Post: Edit

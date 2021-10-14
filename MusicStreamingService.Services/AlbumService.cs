@@ -25,7 +25,8 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Albums.Add(entity);
-                return ctx.SaveChanges() == 1;
+                ctx.Artists.Single(a => a.ArtistId == entity.ArtistId).AlbumsNumber += 1;
+                return ctx.SaveChanges() == 2;
             }
 
         }
@@ -81,10 +82,10 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Albums.Single(a => a.AlbumId == albumId);
-
+                ctx.Artists.Single(a => a.ArtistId == entity.ArtistId).AlbumsNumber -= 1;
                 ctx.Albums.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() == 2;
             }
         }
 

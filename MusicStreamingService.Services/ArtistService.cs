@@ -56,6 +56,7 @@ namespace MusicStreamingService.Services
                 var entity = ctx.Artists.Single(a => a.ArtistId == id);
                 return new ArtistDetail()
                 {
+                    ArtistId = entity.ArtistId,
                     Name = entity.Name,
                     About = entity.About,
                     Birthday = entity.Birthday,
@@ -96,7 +97,6 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Artists.Single(a => a.ArtistId == id);
-
                 var query = entity.Albums.Select(a => new AlbumDetail
                 {
                     ArtistName = ctx.Artists.FirstOrDefault(b => b.ArtistId == entity.ArtistId).Name,

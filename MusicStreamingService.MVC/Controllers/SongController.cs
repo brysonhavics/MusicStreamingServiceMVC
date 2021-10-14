@@ -77,7 +77,7 @@ namespace MusicStreamingService.MVC.Controllers
         }
 
         // GET: Song/Edit
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
             ViewBag.Title = "Edit Song";
 

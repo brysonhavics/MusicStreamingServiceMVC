@@ -36,12 +36,13 @@ namespace MusicStreamingService.MVC.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Song>()
                 .HasRequired(a => a.Artist)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-
             /*
+
             modelBuilder.Entity<Album>()
                 .HasRequired(b => b.Artist)
                 .WithMany(a => a.Albums)

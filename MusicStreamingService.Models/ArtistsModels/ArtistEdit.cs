@@ -14,6 +14,8 @@ namespace MusicStreamingService.Models.ArtistsModels
         public string Name { get; set; }
         [Display(Name = "About Artist")]
         public string About { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] // added for date picker
         [Display(Name = "Birthday")]
         public DateTime Birthday {get; set; }
     }

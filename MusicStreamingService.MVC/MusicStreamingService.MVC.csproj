@@ -254,6 +254,7 @@
     <Content Include="Views\Song\Delete.cshtml" />
     <Content Include="Views\Album\AlbumSongs.cshtml" />
     <Content Include="Views\Artist\ArtistAlbums.cshtml" />
+    <Content Include="Views\Artist\ArtistSongs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

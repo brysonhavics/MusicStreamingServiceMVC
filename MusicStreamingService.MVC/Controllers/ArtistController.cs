@@ -109,5 +109,14 @@ namespace MusicStreamingService.MVC.Controllers
             ViewBag.Artist = service.GetArtistById(id).Name;
             return View(model);
         }
+
+        [Route("ArtistSongs/{id:int}")]
+        public ActionResult ArtistSongs(int id)
+        {
+            var service = CreateArtistService();
+            var model = service.GetArtistSongs(id);
+            ViewBag.Artist = service.GetArtistById(id).Name;
+            return View(model);
+        }
     }
 }

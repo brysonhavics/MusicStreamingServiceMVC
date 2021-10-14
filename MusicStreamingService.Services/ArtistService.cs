@@ -107,7 +107,7 @@ namespace MusicStreamingService.Services
                 return query.ToArray();
             }
         }
-
+        /*
         public IEnumerable<SongDetail> GetArtistSongs(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -120,8 +120,24 @@ namespace MusicStreamingService.Services
                     AlbumName = ctx.Albums.FirstOrDefault(d => d.AlbumId == a.AlbumId).Name,
                     Name = entity.Name,
                     ReleaseDate = ctx.Songs.FirstOrDefault(c => c.SongId == a.SongId).ReleaseDate,
-                    Length = ctx.Songs.FirstOrDefault(c => c.SongId == a.SongId).Length,
+                    Length = ctx.Songs.FirstOrDefault(e => e.SongId == a.SongId).Length,
                 });
+                return query.ToArray();
+            }
+        }
+        */
+        public IEnumerable<SongDetail> GetArtistSongs(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Songs.Where(e => e.ArtistId == id ).Select(s => new SongDetail { 
+                    AlbumName =ctx.Albums.FirstOrDefault(d => d.AlbumId == s.AlbumId).Name,
+                    ArtistName = ctx.Artists.FirstOrDefault(b => b.ArtistId == s.ArtistId).Name,
+                    Name = s.Name,
+                    ReleaseDate = s.ReleaseDate,
+                    Length = s.Length,
+                });
+                    
                 return query.ToArray();
             }
         }

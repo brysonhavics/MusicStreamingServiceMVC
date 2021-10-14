@@ -14,6 +14,8 @@ namespace MusicStreamingService.Models.AlbumModels
         public string Name { get; set; }
         [Display(Name = "Artist Id")]
         public int ArtistId { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] // added for date picker
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
     }

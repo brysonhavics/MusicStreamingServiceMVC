@@ -10,21 +10,6 @@
     <h4>Album Detail</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AlbumId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AlbumId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ArtistId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ArtistId)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ArtistName)
@@ -47,7 +32,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
+            @{ string releaseDate = Model.ReleaseDate.ToString("yyyy-MM-dd");}
+            @Html.DisplayFor(model => releaseDate)
         </dd>
 
         <dt>

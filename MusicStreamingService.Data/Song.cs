@@ -12,9 +12,8 @@ namespace MusicStreamingService.Data
     {
         [Key]
         public int SongId { get; set; }
-        [Required]
         [ForeignKey(nameof(Album))]
-        public int AlbumId { get; set; }
+        public int? AlbumId { get; set; }
         [Required]
         [ForeignKey(nameof(Artist))]
         public int ArtistId { get; set; }

@@ -32,7 +32,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Birthday)
+            @{ string birthday = Model.Birthday.ToString("yyyy-MM-dd");}
+            @Html.DisplayFor(model => birthday)
         </dd>
 
         <dt>

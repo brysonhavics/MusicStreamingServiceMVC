@@ -61,6 +61,10 @@
     <Compile Include="Migrations\202110111950341_attempt 3.Designer.cs">
       <DependentUpon>202110111950341_attempt 3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110142048483_first.cs" />
+    <Compile Include="Migrations\202110142048483_first.Designer.cs">
+      <DependentUpon>202110142048483_first.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Song.cs" />
@@ -72,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110111950341_attempt 3.resx">
       <DependentUpon>202110111950341_attempt 3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110142048483_first.resx">
+      <DependentUpon>202110142048483_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -74,6 +74,7 @@ namespace MusicStreamingService.MVC.Controllers
                 About = detail.About,
                 Birthday = detail.Birthday,
             };
+            ViewBag.Name = model.Name;
             return View(model);
         }
 

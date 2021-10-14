@@ -58,6 +58,7 @@ namespace MusicStreamingService.Services
                 var entity = ctx.Songs.Single(s => s.SongId == id);
                 return new SongDetail()
                 {
+                    SongId = entity.SongId,
                     AlbumName = entity.Album.Name,
                     ArtistName = entity.Artist.Name,
                     Name = entity.Name,

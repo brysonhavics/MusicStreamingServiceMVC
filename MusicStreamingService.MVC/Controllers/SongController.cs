@@ -80,7 +80,13 @@ namespace MusicStreamingService.MVC.Controllers
         public ActionResult Edit(int id)
         {
             ViewBag.Title = "Edit Song";
-
+            var service = CreateSongService();
+            var detail = service.GetSongById(id);
+            var model = new SongEdit()
+            {
+                SongId = detail.SongId,
+                Name = detail.Name,
+            };
             List<Artist> Artists = new ArtistService().GetArtistsList();
             var artistList = from a in Artists
                              select new SelectListItem()
@@ -97,7 +103,8 @@ namespace MusicStreamingService.MVC.Controllers
                                 Text = b.Name
                             };
             ViewBag.AlbumId = albumList.ToList();
-            return View();
+            ViewBag.Name = CreateSongService().GetSongById(id).Name;
+            return View(model);
         }
 
         // POST: Song/Edit

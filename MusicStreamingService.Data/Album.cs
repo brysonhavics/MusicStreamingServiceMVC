@@ -19,6 +19,7 @@ namespace MusicStreamingService.Data
         public int ArtistId { get; set; }
         public DateTime ReleaseDate { get; set; }
         public TimeSpan Length { get; set; }
+        public string Image { get; set; }
         public virtual List<Song> Songs { get; set; }
         public virtual Artist Artist { get; set; }
     }

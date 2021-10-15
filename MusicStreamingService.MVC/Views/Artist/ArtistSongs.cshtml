@@ -39,7 +39,8 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
+            @{ string releaseDate = item.ReleaseDate.ToString("yyyy-MM-dd");}
+            @Html.DisplayFor(model => releaseDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Length)

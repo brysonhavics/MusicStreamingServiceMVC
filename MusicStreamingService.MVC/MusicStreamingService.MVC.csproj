@@ -255,6 +255,7 @@
     <Content Include="Views\Artist\ArtistAlbums.cshtml" />
     <Content Include="Views\Artist\ArtistSongs.cshtml" />
     <Content Include="Views\Artist\Edit.cshtml" />
+    <Content Include="Views\Album\AddAlbumCover.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

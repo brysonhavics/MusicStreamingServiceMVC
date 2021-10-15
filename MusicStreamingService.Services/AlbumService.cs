@@ -60,6 +60,7 @@ namespace MusicStreamingService.Services
                     Name = entity.Name,
                     ReleaseDate = entity.ReleaseDate,
                     Length = entity.Length,
+                    Image = entity.Image,
                 };
             }
         }
@@ -100,6 +101,17 @@ namespace MusicStreamingService.Services
                     Length = s.Length
                 });
                 return query.ToArray();
+            }
+        }
+
+        public bool AddAlbumCover(AddAlbumCover addAlbumCover)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Albums.Single(a => a.AlbumId == addAlbumCover.AlbumId);
+
+                entity.Image = addAlbumCover.Image;
+                return ctx.SaveChanges() == 1;
             }
         }
     }

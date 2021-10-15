@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumModels\AddAlbumCover.cs" />
     <Compile Include="AlbumModels\AlbumCreate.cs" />
     <Compile Include="AlbumModels\AlbumDetail.cs" />
     <Compile Include="AlbumModels\AlbumEdit.cs" />

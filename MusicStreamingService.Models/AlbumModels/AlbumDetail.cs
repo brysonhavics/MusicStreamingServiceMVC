@@ -19,5 +19,7 @@ namespace MusicStreamingService.Models.AlbumModels
         public DateTime ReleaseDate { get; set; }
         [Display(Name = "Length")]
         public TimeSpan Length { get; set; }
+        [System.ComponentModel.DefaultValue("No Image")]
+        public string Image { get; set; }
     }
 }

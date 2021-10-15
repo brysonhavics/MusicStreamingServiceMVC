@@ -138,5 +138,32 @@ namespace MusicStreamingService.MVC.Controllers
             return View(model);
         }
 
+        [Route("AddAlbumCover/{id:int}")]
+        public ActionResult AddAlbumCover(int id)
+        {
+            var service = CreateAlbumService();
+            var details = service.GetAlbumById(id);
+            var model = new AddAlbumCover()
+            {
+                AlbumId = details.AlbumId,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAlbumCover(AddAlbumCover addAlbumCover)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(addAlbumCover);
+            }
+            var service = CreateAlbumService();
+            if (service.AddAlbumCover(addAlbumCover))
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

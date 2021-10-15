@@ -1,4 +1,5 @@
-﻿using MusicStreamingService.Models.SongModels;
+﻿using MusicStreamingService.Data;
+using MusicStreamingService.Models.SongModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -32,7 +33,7 @@ namespace MusicStreamingService.Models
         public DateTime Created { get; set; }
         [Display(Name = "Length")]
         public TimeSpan Length { get; set; }
-        public virtual List<SongListItem> Songs { get; set; }
+        public virtual List<Song> Songs { get; set; }
     }
 
     public class PlaylistAddSong

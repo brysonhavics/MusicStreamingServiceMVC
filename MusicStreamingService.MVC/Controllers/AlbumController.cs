@@ -67,7 +67,10 @@ namespace MusicStreamingService.MVC.Controllers
         {
             var service = CreateAlbumService();
             var model = service.GetAlbumById(id);
-
+            if (model.Image == null)
+            {
+                model.Image = "No Image";
+            }
             return View(model);
         }
 
@@ -145,6 +148,7 @@ namespace MusicStreamingService.MVC.Controllers
             var details = service.GetAlbumById(id);
             var model = new AddAlbumCover()
             {
+                Name = details.Name,
                 AlbumId = details.AlbumId,
             };
             return View(model);

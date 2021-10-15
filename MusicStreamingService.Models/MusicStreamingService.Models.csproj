@@ -51,6 +51,7 @@
     <Compile Include="ArtistsModels\ArtistDetail.cs" />
     <Compile Include="ArtistsModels\ArtistEdit.cs" />
     <Compile Include="ArtistsModels\ArtistListItem.cs" />
+    <Compile Include="PlaylistModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongModels\SongCreate.cs" />
     <Compile Include="SongModels\SongListItem.cs" />

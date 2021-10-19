@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MusicStreamingService.Data;
+using MusicStreamingService.Models;
+using MusicStreamingService.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,38 +11,40 @@ namespace MusicStreamingService.MVC.Controllers
 {
     public class PlaylistController : Controller
     {
-        // GET: Playlist
-        public ActionResult Index()
+        private PlaylistService CreatePlaylistService()
         {
-            return View();
-        }
-
-        // GET: Playlist/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return new PlaylistService();
         }
 
         // GET: Playlist/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
         // POST: Playlist/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(PlaylistCreate model)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                return View(model);
+            }
+            var service = CreatePlaylistService();
+            if (service.CreatePlaylist(model))
+            {
+                return RedirectToAction($"Details/{model.PlaylistId}");
+            }
+            return View();
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        //Get: Playlist Detail
+        public ActionResult Details(int id)
+        {
+            var service = CreatePlaylistService();
+            var model = service.GetPlaylist(id);
+            return View(model);
         }
 
         // GET: Playlist/Edit/5

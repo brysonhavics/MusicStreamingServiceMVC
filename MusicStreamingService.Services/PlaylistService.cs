@@ -39,6 +39,7 @@ namespace MusicStreamingService.Services
 
                 return new PlaylistView()
                 {
+                    PlaylistId = entity.PlaylistId,
                     Name = entity.Name,
                     Description = entity.Description,
                     Likes = entity.Likes,
@@ -46,6 +47,17 @@ namespace MusicStreamingService.Services
                     Length = entity.Length,
                     Songs = entity.Songs,
                 };
+            }
+        }
+
+        public bool AddSong(PlaylistAddSong model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Playlists.Single(p => p.PlaylistId == model.PlaylistId);
+                entity.Songs.Add(ctx.Songs.Single(s => s.SongId == model.SongId));
+
+                return ctx.SaveChanges() == 2;
             }
         }
     }

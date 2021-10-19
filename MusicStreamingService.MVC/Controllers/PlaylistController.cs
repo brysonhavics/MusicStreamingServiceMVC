@@ -1,5 +1,6 @@
 ﻿using MusicStreamingService.Data;
 using MusicStreamingService.Models;
+using MusicStreamingService.MVC.Models;
 using MusicStreamingService.Services;
 using System;
 using System.Collections.Generic;
@@ -48,25 +49,32 @@ namespace MusicStreamingService.MVC.Controllers
         }
 
         // GET: Playlist/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult AddSong(int id)
         {
+            List<Song> Songs = new SongService().GetSongsList();
+            var songsList = from a in Songs
+                             select new SelectListItem()
+                             {
+                                 Value = a.SongId.ToString(),
+                                 Text = a.Name
+                             };
+            ViewBag.SongId = songsList.ToList();
+
             return View();
         }
 
         // POST: Playlist/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddSong(PlaylistAddSong model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var service = CreatePlaylistService();
+                service.AddSong(model);
+                return RedirectToAction($"Details/{model.PlaylistId}");
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
         // GET: Playlist/Delete/5

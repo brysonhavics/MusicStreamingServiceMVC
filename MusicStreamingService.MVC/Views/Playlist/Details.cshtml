@@ -10,6 +10,7 @@
     <h4>PlaylistView</h4>
     <hr />
     <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.PlaylistId)
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -53,6 +54,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Add Song", "AddSong", new {  id = Model.PlaylistId }) |
 </p>

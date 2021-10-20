@@ -1,5 +1,6 @@
 ﻿using MusicStreamingService.Data;
 using MusicStreamingService.Models.AlbumModels;
+using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.Services;
 using System;
 using System.Collections.Generic;
@@ -66,15 +67,36 @@ namespace MusicStreamingService.MVC.Controllers
         {
             var service = CreateAlbumService();
             var model = service.GetAlbumById(id);
-
+            if (model.Image == null)
+            {
+                model.Image = "No Image";
+            }
             return View(model);
         }
 
         //Get: Edit
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            List<Artist> Artists = new ArtistService().GetArtistsList();
+            var artistList = from a in Artists
+                             select new SelectListItem()
+                             {
+                                 Value = a.ArtistId.ToString(),
+                                 Text = a.Name
+                             };
+            ViewBag.ArtistId = artistList.ToList();
+            var service = CreateAlbumService();
+            var detail = service.GetAlbumById(id);
+            var model = new AlbumEdit()
+            {
+                AlbumId = detail.AlbumId,
+                ArtistId = detail.ArtistId,
+                Name = detail.Name,
+                ReleaseDate = detail.ReleaseDate,
+            };
+            ViewBag.Name = detail.Name;
+            return View(model);
         }
 
         //Post: Edit
@@ -110,12 +132,42 @@ namespace MusicStreamingService.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        
-        public ActionResult GetSongsOnAlbum(int id)
+        [Route("AlbumSongs/{id:int}")]
+        public ActionResult AlbumSongs(int id)
         {
             var service = CreateAlbumService();
             var model = service.GetSongsOnAlbum(id);
+            ViewBag.Name = service.GetAlbumById(id).Name;
             return View(model);
+        }
+
+        [Route("AddAlbumCover/{id:int}")]
+        public ActionResult AddAlbumCover(int id)
+        {
+            var service = CreateAlbumService();
+            var details = service.GetAlbumById(id);
+            var model = new AddAlbumCover()
+            {
+                Name = details.Name,
+                AlbumId = details.AlbumId,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAlbumCover(AddAlbumCover addAlbumCover)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(addAlbumCover);
+            }
+            var service = CreateAlbumService();
+            if (service.AddAlbumCover(addAlbumCover))
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

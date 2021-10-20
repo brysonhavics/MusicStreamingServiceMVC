@@ -61,7 +61,24 @@
     <Compile Include="Migrations\202110111950341_attempt 3.Designer.cs">
       <DependentUpon>202110111950341_attempt 3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110142048483_first.cs" />
+    <Compile Include="Migrations\202110142048483_first.Designer.cs">
+      <DependentUpon>202110142048483_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110151607032_albumcover.cs" />
+    <Compile Include="Migrations\202110151607032_albumcover.Designer.cs">
+      <DependentUpon>202110151607032_albumcover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110191433540_playlist.cs" />
+    <Compile Include="Migrations\202110191433540_playlist.Designer.cs">
+      <DependentUpon>202110191433540_playlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110200134097_nouserid.cs" />
+    <Compile Include="Migrations\202110200134097_nouserid.Designer.cs">
+      <DependentUpon>202110200134097_nouserid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Playlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Song.cs" />
   </ItemGroup>
@@ -72,6 +89,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110111950341_attempt 3.resx">
       <DependentUpon>202110111950341_attempt 3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110142048483_first.resx">
+      <DependentUpon>202110142048483_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110151607032_albumcover.resx">
+      <DependentUpon>202110151607032_albumcover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110191433540_playlist.resx">
+      <DependentUpon>202110191433540_playlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110200134097_nouserid.resx">
+      <DependentUpon>202110200134097_nouserid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

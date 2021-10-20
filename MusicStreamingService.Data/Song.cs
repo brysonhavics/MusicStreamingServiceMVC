@@ -12,9 +12,8 @@ namespace MusicStreamingService.Data
     {
         [Key]
         public int SongId { get; set; }
-        [Required]
         [ForeignKey(nameof(Album))]
-        public int AlbumId { get; set; }
+        public int? AlbumId { get; set; }
         [Required]
         [ForeignKey(nameof(Artist))]
         public int ArtistId { get; set; }
@@ -25,5 +24,6 @@ namespace MusicStreamingService.Data
         public TimeSpan Length { get; set; }
         public virtual Album Album { get; set; }
         public virtual Artist Artist { get; set; }
+        //public virtual ICollection<Playlist> Playlists { get; set; }
     }
 }

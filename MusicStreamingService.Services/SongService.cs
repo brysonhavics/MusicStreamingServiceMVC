@@ -32,6 +32,8 @@ namespace MusicStreamingService.Services
             }
         }
 
+        
+
         public IEnumerable<SongListItem> GetSongs()
         {
             using (var ctx = new ApplicationDbContext())
@@ -41,6 +43,14 @@ namespace MusicStreamingService.Services
             }
         }
 
+
+        public List<Song> GetSongsList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Songs.ToList();
+            }
+        }
         public SongDetail GetSongById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -48,6 +58,7 @@ namespace MusicStreamingService.Services
                 var entity = ctx.Songs.Single(s => s.SongId == id);
                 return new SongDetail()
                 {
+                    SongId = entity.SongId,
                     AlbumName = entity.Album.Name,
                     ArtistName = entity.Artist.Name,
                     Name = entity.Name,
@@ -76,10 +87,10 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Songs.Single(a => a.SongId == songId);
-
+                ctx.Albums.Single(a => a.AlbumId == entity.AlbumId).Length -= entity.Length;
                 ctx.Songs.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() == 2;
             }
         }
     }

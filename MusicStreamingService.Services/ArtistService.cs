@@ -1,5 +1,7 @@
 ﻿using MusicStreamingService.Data;
+using MusicStreamingService.Models.AlbumModels;
 using MusicStreamingService.Models.ArtistsModels;
+using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -33,7 +35,7 @@ namespace MusicStreamingService.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                    var query = ctx.Artists.Select(e => new ArtistListItem { About = e.About, Albums = e.AlbumsNumber, Birthday = e.Birthday, Followers = e.Followers, Name = e.Name, ArtistId = e.ArtistId});
+                var query = ctx.Artists.Select(e => new ArtistListItem {About = e.About, Albums = e.AlbumsNumber, Birthday = e.Birthday, Followers = e.Followers, Name = e.Name, ArtistId = e.ArtistId });
                 return query.ToArray();
             }
         }
@@ -54,6 +56,7 @@ namespace MusicStreamingService.Services
                 var entity = ctx.Artists.Single(a => a.ArtistId == id);
                 return new ArtistDetail()
                 {
+                    ArtistId = entity.ArtistId,
                     Name = entity.Name,
                     About = entity.About,
                     Birthday = entity.Birthday,
@@ -86,6 +89,56 @@ namespace MusicStreamingService.Services
                 ctx.Artists.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<AlbumDetail> GetArtistAlbums(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Artists.Single(a => a.ArtistId == id);
+                var query = entity.Albums.Select(a => new AlbumDetail
+                {
+                    ArtistName = ctx.Artists.FirstOrDefault(b => b.ArtistId == entity.ArtistId).Name,
+                    Name = entity.Name,
+                    ReleaseDate = ctx.Albums.FirstOrDefault(c => c.AlbumId == a.AlbumId).ReleaseDate,
+                    Length = ctx.Albums.FirstOrDefault(c => c.AlbumId == a.AlbumId).Length,
+                });
+                return query.ToArray();
+            }
+        }
+        /*
+        public IEnumerable<SongDetail> GetArtistSongs(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Artists.Single(a => a.ArtistId == id);
+
+                var query = entity.Songs.Select(a => new SongDetail
+                {
+                    ArtistName = ctx.Artists.FirstOrDefault(b => b.ArtistId == entity.ArtistId).Name,
+                    AlbumName = ctx.Albums.FirstOrDefault(d => d.AlbumId == a.AlbumId).Name,
+                    Name = entity.Name,
+                    ReleaseDate = ctx.Songs.FirstOrDefault(c => c.SongId == a.SongId).ReleaseDate,
+                    Length = ctx.Songs.FirstOrDefault(e => e.SongId == a.SongId).Length,
+                });
+                return query.ToArray();
+            }
+        }
+        */
+        public IEnumerable<SongDetail> GetArtistSongs(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Songs.Where(e => e.ArtistId == id ).Select(s => new SongDetail { 
+                    AlbumName =ctx.Albums.FirstOrDefault(d => d.AlbumId == s.AlbumId).Name,
+                    ArtistName = ctx.Artists.FirstOrDefault(b => b.ArtistId == s.ArtistId).Name,
+                    Name = s.Name,
+                    ReleaseDate = s.ReleaseDate,
+                    Length = s.Length,
+                });
+                    
+                return query.ToArray();
             }
         }
     }

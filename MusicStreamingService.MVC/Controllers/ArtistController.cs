@@ -63,9 +63,19 @@ namespace MusicStreamingService.MVC.Controllers
 
         //Get: Edit
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var service = CreateArtistService();
+            var detail = service.GetArtistById(id);
+            var model = new ArtistEdit()
+            {
+                ArtistId = detail.ArtistId,
+                Name = detail.Name,
+                About = detail.About,
+                Birthday = detail.Birthday,
+            };
+            ViewBag.Name = model.Name;
+            return View(model);
         }
 
         //Post: Edit
@@ -101,5 +111,22 @@ namespace MusicStreamingService.MVC.Controllers
             return RedirectToAction("Index");
         }
         
+        [Route("ArtistAlbums/{id:int}")]
+        public ActionResult ArtistAlbums(int id)
+        {
+            var service = CreateArtistService();
+            var model = service.GetArtistAlbums(id);
+            ViewBag.Artist = service.GetArtistById(id).Name;
+            return View(model);
+        }
+
+        [Route("ArtistSongs/{id:int}")]
+        public ActionResult ArtistSongs(int id)
+        {
+            var service = CreateArtistService();
+            var model = service.GetArtistSongs(id);
+            ViewBag.Artist = service.GetArtistById(id).Name;
+            return View(model);
+        }
     }
 }

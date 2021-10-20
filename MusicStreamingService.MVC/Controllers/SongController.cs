@@ -1,4 +1,5 @@
-﻿using MusicStreamingService.Models.ArtistsModels;
+﻿using MusicStreamingService.Data;
+using MusicStreamingService.Models.ArtistsModels;
 using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.Services;
 using System;
@@ -36,8 +37,28 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Song/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "New Song";
+
+            List<Artist> Artists = new ArtistService().GetArtistsList();
+            var artistList = from a in Artists
+                             select new SelectListItem()
+                             {
+                                 Value = a.ArtistId.ToString(),
+                                 Text = a.Name
+                             };
+            ViewBag.ArtistId = artistList.ToList();
+            List<Album> Albums = new AlbumService().GetAlbumsList();
+            var albumList = from b in Albums
+                            select new SelectListItem()
+                            {
+                                Value = b.AlbumId.ToString(),
+                                Text = b.Name
+                            };
+            ViewBag.AlbumId = albumList.ToList();
             return View();
         }
+
+
 
         // POST: Song/Create
         [HttpPost]
@@ -58,9 +79,34 @@ namespace MusicStreamingService.MVC.Controllers
         }
 
         // GET: Song/Edit
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.Title = "Edit Song";
+            var service = CreateSongService();
+            var detail = service.GetSongById(id);
+            var model = new SongEdit()
+            {
+                SongId = detail.SongId,
+                Name = detail.Name,
+            };
+            List<Artist> Artists = new ArtistService().GetArtistsList();
+            var artistList = from a in Artists
+                             select new SelectListItem()
+                             {
+                                 Value = a.ArtistId.ToString(),
+                                 Text = a.Name
+                             };
+            ViewBag.ArtistId = artistList.ToList();
+            List<Album> Albums = new AlbumService().GetAlbumsList();
+            var albumList = from b in Albums
+                            select new SelectListItem()
+                            {
+                                Value = b.AlbumId.ToString(),
+                                Text = b.Name
+                            };
+            ViewBag.AlbumId = albumList.ToList();
+            ViewBag.Name = CreateSongService().GetSongById(id).Name;
+            return View(model);
         }
 
         // POST: Song/Edit

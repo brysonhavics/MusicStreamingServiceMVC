@@ -7,25 +7,14 @@
 <h2>Details</h2>
 
 <div>
-    <h4>AlbumDetail</h4>
+    <h4>@Model.Name</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AlbumId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AlbumId)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ArtistId)
+            @{  string Image = Model.Image;}
+            <img src="@Url.Content(Image)" />
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ArtistId)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.ArtistName)
         </dt>
@@ -35,19 +24,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
+            @{ string releaseDate = Model.ReleaseDate.ToString("yyyy-MM-dd");}
+            @Html.DisplayFor(model => releaseDate)
         </dd>
 
         <dt>

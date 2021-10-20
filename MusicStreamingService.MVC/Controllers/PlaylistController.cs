@@ -80,7 +80,7 @@ namespace MusicStreamingService.MVC.Controllers
             {
                 var service = CreatePlaylistService();
                 service.AddSong(model);
-                return RedirectToAction($"Details/{model.PlaylistId}");
+                return RedirectToAction("Index");
             }
             return View(model);
         }
@@ -88,23 +88,21 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Playlist/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var service = CreatePlaylistService();
+            var model = service.GetPlaylist(id);
+            return View(model);
         }
 
         // POST: Playlist/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePlaylist(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var service = CreatePlaylistService();
+            service.DeletePlaylist(id);
+            TempData["SaveResult"] = "The playlist was deleted";
+            return RedirectToAction("Index");
         }
     }
 }

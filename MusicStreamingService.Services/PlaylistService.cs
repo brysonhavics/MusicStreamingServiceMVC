@@ -76,5 +76,16 @@ namespace MusicStreamingService.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeletePlaylist(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Playlists.Single(p => p.PlaylistId == id);
+                ctx.Playlists.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

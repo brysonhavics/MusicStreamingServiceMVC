@@ -67,6 +67,7 @@ namespace MusicStreamingService.MVC.Controllers
         {
             var service = CreateArtistService();
             var detail = service.GetArtistById(id);
+
             var model = new ArtistEdit()
             {
                 ArtistId = detail.ArtistId,

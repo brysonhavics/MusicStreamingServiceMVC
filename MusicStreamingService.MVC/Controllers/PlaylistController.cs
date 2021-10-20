@@ -58,6 +58,12 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Playlist/Edit/5
         public ActionResult AddSong(int id)
         {
+            var service = CreatePlaylistService();
+            var detail = service.GetPlaylist(id);
+            var model = new PlaylistAddSong
+            {
+                PlaylistId = detail.PlaylistId,
+            };
             List<Song> Songs = new SongService().GetSongsList().ToList(); ;
             var songsList = from a in Songs
                              select new SelectListItem()
@@ -68,7 +74,7 @@ namespace MusicStreamingService.MVC.Controllers
             
             ViewBag.SongId = songsList.ToList();
 
-            return View();
+            return View(model);
         }
 
         // POST: Playlist/Edit

@@ -11,7 +11,8 @@ namespace MusicStreamingService.Data
     {
         [Key]
         public int PlaylistId { get; set; }
-        public Guid UserId { get; set; }
+        //TODO
+        //public Guid UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int Likes { get; set; }

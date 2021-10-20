@@ -43,4 +43,12 @@ namespace MusicStreamingService.Models
         public Guid UserId { get; set; }
         public int SongId { get; set; }
     }
+
+    public class PlaylistListItem
+        {
+        public int PlaylistId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public TimeSpan Length { get; set; }
+    }
 }

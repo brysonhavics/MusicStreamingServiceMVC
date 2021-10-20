@@ -17,6 +17,13 @@ namespace MusicStreamingService.MVC.Controllers
             return new PlaylistService();
         }
 
+        public ActionResult Index()
+        {
+            var service = CreatePlaylistService();
+            var model = service.GetPlaylists();
+            return View(model);
+        }
+
         // GET: Playlist/Create
         public ActionResult Create()
         {
@@ -35,7 +42,7 @@ namespace MusicStreamingService.MVC.Controllers
             var service = CreatePlaylistService();
             if (service.CreatePlaylist(model))
             {
-                return RedirectToAction($"Details/{model.PlaylistId}");
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -51,19 +58,20 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Playlist/Edit/5
         public ActionResult AddSong(int id)
         {
-            List<Song> Songs = new SongService().GetSongsList();
+            List<Song> Songs = new SongService().GetSongsList().ToList(); ;
             var songsList = from a in Songs
                              select new SelectListItem()
                              {
                                  Value = a.SongId.ToString(),
                                  Text = a.Name
                              };
+            
             ViewBag.SongId = songsList.ToList();
 
             return View();
         }
 
-        // POST: Playlist/Edit/5
+        // POST: Playlist/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddSong(PlaylistAddSong model)

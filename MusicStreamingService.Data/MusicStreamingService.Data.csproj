@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202110191433540_playlist.Designer.cs">
       <DependentUpon>202110191433540_playlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110200134097_nouserid.cs" />
+    <Compile Include="Migrations\202110200134097_nouserid.Designer.cs">
+      <DependentUpon>202110200134097_nouserid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110191433540_playlist.resx">
       <DependentUpon>202110191433540_playlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110200134097_nouserid.resx">
+      <DependentUpon>202110200134097_nouserid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

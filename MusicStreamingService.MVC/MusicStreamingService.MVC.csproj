@@ -260,6 +260,7 @@
     <Content Include="Views\Playlist\Create.cshtml" />
     <Content Include="Views\Playlist\Details.cshtml" />
     <Content Include="Views\Playlist\AddSong.cshtml" />
+    <Content Include="Views\Playlist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,6 +30,20 @@ namespace MusicStreamingService.Services
             }
         }
 
+        public IEnumerable<PlaylistListItem> GetPlaylists()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Playlists.Select(p => new PlaylistListItem
+                {
+                    Name = p.Name,
+                    Description = p.Description,
+                    Length = p.Length,
+                    PlaylistId = p.PlaylistId,
+                });
+                return query.ToArray();
+            }
+        }
 
         public PlaylistView GetPlaylist(int id)
         {
@@ -57,7 +71,9 @@ namespace MusicStreamingService.Services
                 var entity = ctx.Playlists.Single(p => p.PlaylistId == model.PlaylistId);
                 entity.Songs.Add(ctx.Songs.Single(s => s.SongId == model.SongId));
 
-                return ctx.SaveChanges() == 2;
+
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }

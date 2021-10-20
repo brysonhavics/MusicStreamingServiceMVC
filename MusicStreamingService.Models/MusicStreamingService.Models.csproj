@@ -51,11 +51,18 @@
     <Compile Include="ArtistsModels\ArtistDetail.cs" />
     <Compile Include="ArtistsModels\ArtistEdit.cs" />
     <Compile Include="ArtistsModels\ArtistListItem.cs" />
+    <Compile Include="PlaylistModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongModels\SongCreate.cs" />
     <Compile Include="SongModels\SongListItem.cs" />
     <Compile Include="SongModels\SongDetail.cs" />
     <Compile Include="SongModels\SongEdit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicStreamingService.Data\MusicStreamingService.Data.csproj">
+      <Project>{11F29166-1535-421F-8DDE-B00DA79EE3CF}</Project>
+      <Name>MusicStreamingService.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -109,7 +109,6 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Albums.Single(a => a.AlbumId == addAlbumCover.AlbumId);
-
                 entity.Image = addAlbumCover.Image;
                 return ctx.SaveChanges() == 1;
             }

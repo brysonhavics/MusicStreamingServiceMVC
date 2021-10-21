@@ -18,7 +18,7 @@ namespace MusicStreamingService.MVC.Controllers
             return songService;
         }
 
-        // GET: Song
+        // GET: Index
         public ActionResult Index()
         {
             var service = CreateSongService();

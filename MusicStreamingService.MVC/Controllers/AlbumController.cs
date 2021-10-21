@@ -12,7 +12,6 @@ namespace MusicStreamingService.MVC.Controllers
 {
     public class AlbumController : Controller
     {
-
         private AlbumService CreateAlbumService()
         {
             var albumService = new AlbumService();
@@ -62,7 +61,6 @@ namespace MusicStreamingService.MVC.Controllers
         }
 
         //Get: Details
-
         public ActionResult Details(int id)
         {
             var service = CreateAlbumService();
@@ -75,7 +73,6 @@ namespace MusicStreamingService.MVC.Controllers
         }
 
         //Get: Edit
-
         public ActionResult Edit(int id)
         {
             List<Artist> Artists = new ArtistService().GetArtistsList();
@@ -121,6 +118,7 @@ namespace MusicStreamingService.MVC.Controllers
             return View(model);
         }
 
+        //Post: Delete
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -132,6 +130,7 @@ namespace MusicStreamingService.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        //Get: Songs on Album
         [Route("AlbumSongs/{id:int}")]
         public ActionResult AlbumSongs(int id)
         {
@@ -140,7 +139,7 @@ namespace MusicStreamingService.MVC.Controllers
             ViewBag.Name = service.GetAlbumById(id).Name;
             return View(model);
         }
-
+        //Get: Adding album cover
         [Route("AddAlbumCover/{id:int}")]
         public ActionResult AddAlbumCover(int id)
         {
@@ -154,6 +153,7 @@ namespace MusicStreamingService.MVC.Controllers
             return View(model);
         }
 
+        //Post: Add album cover
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddAlbumCover(AddAlbumCover addAlbumCover)

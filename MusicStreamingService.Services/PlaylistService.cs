@@ -12,6 +12,7 @@ namespace MusicStreamingService.Services
 {
     public class PlaylistService
     {
+        //Makes playlist, no dependencies
         public bool CreatePlaylist(PlaylistCreate model)
         {
             var entity = new Playlist()
@@ -64,7 +65,7 @@ namespace MusicStreamingService.Services
                 };
             }
         }
-
+        //Adds a song to virtual list of songs on playlist
         public bool AddSong(PlaylistAddSong model)
         {
             using (var ctx = new ApplicationDbContext())

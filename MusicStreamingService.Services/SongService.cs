@@ -24,6 +24,7 @@ namespace MusicStreamingService.Services
             using (var ctx = new ApplicationDbContext())
             {
                 //entity.ReleaseDate = entity.Album.ReleaseDate;
+                //virtual refernces don't work this way apparently
                 entity.ReleaseDate = ctx.Albums.Where(a => a.AlbumId == entity.AlbumId).FirstOrDefault().ReleaseDate;
                 //entity.Album.Length += entity.Length;
                 ctx.Albums.Where(a => a.AlbumId == entity.AlbumId).FirstOrDefault().Length += entity.Length;
@@ -31,8 +32,6 @@ namespace MusicStreamingService.Services
                 return ctx.SaveChanges() == 2;
             }
         }
-
-        
 
         public IEnumerable<SongListItem> GetSongs()
         {
@@ -43,7 +42,7 @@ namespace MusicStreamingService.Services
             }
         }
 
-
+        //For select list
         public List<Song> GetSongsList()
         {
             using (var ctx = new ApplicationDbContext())
@@ -51,6 +50,7 @@ namespace MusicStreamingService.Services
                 return ctx.Songs.ToList();
             }
         }
+
         public SongDetail GetSongById(int id)
         {
             using (var ctx = new ApplicationDbContext())

@@ -1,5 +1,6 @@
 ﻿using MusicStreamingService.Data;
 using MusicStreamingService.Models;
+using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.MVC.Models;
 using MusicStreamingService.Services;
 using System;
@@ -58,6 +59,12 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Playlist/Edit/5
         public ActionResult AddSong(int id)
         {
+            var service = CreatePlaylistService();
+            var detail = service.GetPlaylist(id);
+            var model = new PlaylistAddSong
+            {
+                PlaylistId = detail.PlaylistId,
+            };
             List<Song> Songs = new SongService().GetSongsList().ToList(); ;
             var songsList = from a in Songs
                              select new SelectListItem()
@@ -68,7 +75,7 @@ namespace MusicStreamingService.MVC.Controllers
             
             ViewBag.SongId = songsList.ToList();
 
-            return View();
+            return View(model);
         }
 
         // POST: Playlist/Edit
@@ -104,5 +111,14 @@ namespace MusicStreamingService.MVC.Controllers
             TempData["SaveResult"] = "The playlist was deleted";
             return RedirectToAction("Index");
         }
+
+        //Get: View Songs
+        public ActionResult PlaylistSongs(int id)
+        {
+            var service = CreatePlaylistService();
+            var model = service.GetSongsOnPlaylist(id);
+            return View(model);
+        }
+
     }
 }

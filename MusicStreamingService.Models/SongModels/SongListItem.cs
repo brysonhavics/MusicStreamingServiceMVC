@@ -10,11 +10,11 @@ namespace MusicStreamingService.Models.SongModels
     public class SongListItem
     {
         public int SongId { get; set; }
-        [Display(Name ="Album")]
+        [Display(Name ="Album Name")]
         public string AlbumName { get; set; }
-        [Display(Name ="Artist")]
+        [Display(Name ="Artist Name")]
         public string ArtistName { get; set; }
-        [Display(Name = "Song")]
+        [Display(Name = "Title")]
         public string Name { get; set; }
     }
 }

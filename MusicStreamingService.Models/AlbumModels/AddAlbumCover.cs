@@ -12,6 +12,7 @@ namespace MusicStreamingService.Models.AlbumModels
         public int AlbumId { get; set; }
         [Display(Name = "Image URL")]
         public string Image { get; set; }
+        [Display(Name = "Album Title")]
         public string Name { get; set; }
     }
 }

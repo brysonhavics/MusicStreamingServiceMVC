@@ -20,6 +20,7 @@ namespace MusicStreamingService.Models.AlbumModels
         [Display(Name = "Length")]
         public TimeSpan Length { get; set; }
         [System.ComponentModel.DefaultValue("No Image")]
+        [Display(Name = "Images")]
         public string Image { get; set; }
     }
 }

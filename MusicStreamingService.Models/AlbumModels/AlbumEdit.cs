@@ -12,7 +12,7 @@ namespace MusicStreamingService.Models.AlbumModels
         public int AlbumId { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Artist Id")]
+        [Display(Name = "Artist")]
         public int ArtistId { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] // added for date picker

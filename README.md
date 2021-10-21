@@ -25,4 +25,6 @@ Create, view various playlists by likes, and add songs of course!
 ## Planning Doc
 [Google Doc](https://docs.google.com/document/d/1JWinidvfyu4c5wMROhBW6nYy8Vm1sXYHHe__yQNZq50/edit?usp=sharing)
 
+[Azure link](https://musicstreamingservicemvc.azurewebsites.net/)
+
 ### Bryson Havics

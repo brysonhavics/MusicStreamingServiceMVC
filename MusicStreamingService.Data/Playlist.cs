@@ -12,6 +12,7 @@ namespace MusicStreamingService.Data
         [Key]
         public int PlaylistId { get; set; }
         //TODO
+        //Will be implimented with user roles
         //public Guid UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

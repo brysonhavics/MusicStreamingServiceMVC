@@ -12,7 +12,7 @@ namespace MusicStreamingService.Models
     public class PlaylistCreate
     {
         public int PlaylistId { get; set; }
-        public Guid UserId { get; set; }
+        //public Guid UserId { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }
         [Display(Name = "Description")]
@@ -40,15 +40,18 @@ namespace MusicStreamingService.Models
     public class PlaylistAddSong
     {
         public int PlaylistId { get; set; }
-        public Guid UserId { get; set; }
+        //public Guid UserId { get; set; }
         public int SongId { get; set; }
     }
 
     public class PlaylistListItem
         {
         public int PlaylistId { get; set; }
+        [Display(Name = "Title")]
         public string Name { get; set; }
+        [Display(Name = "Description")]
         public string Description { get; set; }
+        [Display(Name = "Length")]
         public TimeSpan Length { get; set; }
     }
 }

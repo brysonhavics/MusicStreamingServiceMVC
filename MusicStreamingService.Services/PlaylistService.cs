@@ -1,5 +1,6 @@
 ﻿using MusicStreamingService.Data;
 using MusicStreamingService.Models;
+using MusicStreamingService.Models.SongModels;
 using MusicStreamingService.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,24 @@ namespace MusicStreamingService.Services
                 ctx.Playlists.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<SongListItem> GetSongsOnPlaylist(int id)
+        {
+            //not sure how to do this without pulling from dbcontext
+            //wanted to use getplaylist method but the reference doesn't exist using db
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Playlists.Single(p => p.PlaylistId == id);
+                var list = entity.Songs.Select(s => new SongListItem()
+                {
+                    Name = s.Name,
+                    AlbumName = s.Album.Name,
+                    ArtistName = s.Artist.Name
+                });
+                return list.ToArray();
+
             }
         }
     }

@@ -100,7 +100,7 @@ namespace MusicStreamingService.MVC.Controllers
             var model = service.GetArtistById(id);
             return View(model);
         }
-        
+        //Post: Delete
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -111,7 +111,7 @@ namespace MusicStreamingService.MVC.Controllers
             TempData["SaveResult"] = "The artist was deleted";
             return RedirectToAction("Index");
         }
-        
+        //Get: Albums by Artist
         [Route("ArtistAlbums/{id:int}")]
         public ActionResult ArtistAlbums(int id)
         {
@@ -120,7 +120,7 @@ namespace MusicStreamingService.MVC.Controllers
             ViewBag.Artist = service.GetArtistById(id).Name;
             return View(model);
         }
-
+        //Get: Songs by Artist
         [Route("ArtistSongs/{id:int}")]
         public ActionResult ArtistSongs(int id)
         {
@@ -129,5 +129,7 @@ namespace MusicStreamingService.MVC.Controllers
             ViewBag.Artist = service.GetArtistById(id).Name;
             return View(model);
         }
+
+        
     }
 }

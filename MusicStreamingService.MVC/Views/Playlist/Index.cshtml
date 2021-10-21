@@ -43,7 +43,8 @@
         <td>
             @Html.ActionLink("Add Songs", "AddSong", new {  id=item.PlaylistId }) |
             @Html.ActionLink("Details", "Details", new { id = item.PlaylistId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.PlaylistId })
+            @Html.ActionLink("Delete", "Delete", new { id = item.PlaylistId }) |
+            @Html.ActionLink("View Songs", "PlaylistSongs", new { id = item.PlaylistId })
         </td>
     </tr>
 }

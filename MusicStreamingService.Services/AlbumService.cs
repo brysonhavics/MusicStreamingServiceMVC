@@ -12,6 +12,7 @@ namespace MusicStreamingService.Services
 {
     public class AlbumService
     {
+        //Create album, requires artist
         public bool CreateAlbum(AlbumCreate model)
         {
             var entity = new Album()
@@ -40,7 +41,7 @@ namespace MusicStreamingService.Services
                 return query.ToArray();
             }
         }
-
+        //Used for select list
         public List<Album> GetAlbumsList()
         {
             using (var ctx = new ApplicationDbContext())
@@ -48,6 +49,7 @@ namespace MusicStreamingService.Services
                 return ctx.Albums.ToList();
             }
         }
+
         public AlbumDetail GetAlbumById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -89,7 +91,7 @@ namespace MusicStreamingService.Services
                 return ctx.SaveChanges() == 2;
             }
         }
-
+        //Get all songs on the album by the song's album id
         public IEnumerable<SongDetail> GetSongsOnAlbum(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -103,7 +105,7 @@ namespace MusicStreamingService.Services
                 return query.ToArray();
             }
         }
-
+        //Add string link to pic
         public bool AddAlbumCover(AddAlbumCover addAlbumCover)
         {
             using (var ctx = new ApplicationDbContext())

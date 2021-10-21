@@ -18,6 +18,7 @@ namespace MusicStreamingService.MVC.Controllers
             return new PlaylistService();
         }
 
+        //Get: Index
         public ActionResult Index()
         {
             var service = CreatePlaylistService();
@@ -28,12 +29,12 @@ namespace MusicStreamingService.MVC.Controllers
         // GET: Playlist/Create
         public ActionResult Create()
         {
-            
             return View();
         }
 
         // POST: Playlist/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(PlaylistCreate model)
         {
             if (!ModelState.IsValid)

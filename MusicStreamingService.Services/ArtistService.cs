@@ -13,6 +13,7 @@ namespace MusicStreamingService.Services
 {
     public class ArtistService
     {
+        //Creates artist, no dependencies 
         public bool CreateArtist(ArtistCreate model)
         {
             var entity = new Artist()
@@ -39,7 +40,7 @@ namespace MusicStreamingService.Services
                 return query.ToArray();
             }
         }
-
+        //For select list
         public List<Artist> GetArtistsList()
         {
             using (var ctx = new ApplicationDbContext())
@@ -91,7 +92,7 @@ namespace MusicStreamingService.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
+        //Uses artist id on album db to return albums
         public IEnumerable<AlbumDetail> GetArtistAlbums(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -107,6 +108,7 @@ namespace MusicStreamingService.Services
                 return query.ToArray();
             }
         }
+        //Old method, didn't work well
         /*
         public IEnumerable<SongDetail> GetArtistSongs(int id)
         {
